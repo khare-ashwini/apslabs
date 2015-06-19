@@ -1,5 +1,1 @@
-$(document).ready(function() {
-
-  // Place JavaScript code here...
-
-});
+var $ = require('jquery');
