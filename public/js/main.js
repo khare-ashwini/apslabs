@@ -3,4 +3,5 @@ var Cover = require('./cover');
 var Instagram = require('./instagram');
 
 Cover.fetchAndAttachImage();
-Instagram.start();
+var instagramStart = Instagram.start.bind(Instagram);
+instagramStart();
