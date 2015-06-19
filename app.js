@@ -78,13 +78,13 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-/*
+
 app.use(lusca({
   csrf: true,
   xframe: 'SAMEORIGIN',
   xssProtection: true
 }));
-*/
+
 app.use(function(req, res, next) {
   res.locals.user = req.user;
   next();
