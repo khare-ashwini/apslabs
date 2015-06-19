@@ -30,7 +30,7 @@ var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
 var instagramController = require('./controllers/instagram');
-
+var twitterController = require('./controllers/twitter');
 /**
  * API keys and Passport configuration.
  */
@@ -198,6 +198,7 @@ app.get('/auth/venmo/callback', passport.authorize('venmo', { failureRedirect: '
  * Custom Routes
  */
 app.get('/location/instagram', passportConf.isAuthenticated, passportConf.isAuthorized, instagramController.getLocationId);
+app.get('/location/twitter', passportConf.isAuthenticated, passportConf.isAuthorized, twitterController.getTweets);
 /**
  * Error Handler.
  */
