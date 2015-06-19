@@ -34,6 +34,7 @@
     "grunt-contrib-concat": "^0.5.1",
     "grunt-contrib-uglify": "^0.9.1",
     "grunt-contrib-watch": "^0.6.1",
+    "grunt-exorcise": "^2.0.0",
     "instagram-node": "^0.5.7",
     "jade": "^1.11.0",
     "jquery": "^2.1.4",
@@ -73,6 +74,7 @@
   "devDependencies": {
     "blessed": "^0.1.60",
     "chai": "^3.0.0",
+    "grunt-browserifying": "^1.0.8",
     "mocha": "^2.2.5",
     "multiline": "^1.0.2",
     "supertest": "^1.0.1"

@@ -57,7 +57,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(compress());
 app.use(connectAssets({
-  paths: [path.join(__dirname, 'public/css'), path.join(__dirname, 'public/build/js')]
+  paths: [path.join(__dirname, 'public/css'), path.join(__dirname, 'public/build/js'), path.join(__dirname, 'public/js')]
 }));
 app.use(logger('dev'));
 app.use(favicon(path.join(__dirname, 'public/favicon.png')));

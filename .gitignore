@@ -21,4 +21,5 @@ node_modules
 Thumbs.db
 
 public/build/js/app.js
+public/build/js/app.js.map
 public/build/js/app.min.js.map

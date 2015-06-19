@@ -3,8 +3,12 @@ module.exports = function( grunt ) {
   grunt.initConfig({
     browserify : {
       app : {
-        src : ['public/js/**/*.js'],
-        dest : 'public/build/js/app.js'
+        files: { 'public/build/js/app.js': ['public/js/**/*.js'] },
+        options: {
+          browserifyOptions: {
+            debug: true
+          }
+        },
       }
     },
     uglify: {
@@ -18,16 +22,24 @@ module.exports = function( grunt ) {
         }
       }
     },
+    exorcise: {
+      app: {
+        options: {},
+        files: {
+          'public/build/js/app.js.map': ['public/build/js/app.js'],
+        }
+      }
+    },
     watch: {
       scripts: {
         files:['public/js/**/*.js'],
-        tasks: ['browserify', 'uglify:app']
+        tasks: ['browserify']
       }
     }
 
   });
 
-  grunt.registerTask('default',['browserify', 'uglify:app', 'watch:scripts'] );
+  grunt.registerTask('default',['browserify', 'exorcise', 'watch:scripts'] );
 
-  grunt.registerTask('production', ['browserify']);
+  grunt.registerTask('production', ['browserify', 'uglify:app']);
 };
