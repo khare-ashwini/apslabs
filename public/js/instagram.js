@@ -1,5 +1,6 @@
 var Location = require('./location');
 var $ = require('jquery');
+require('./libs/collage');
 
 module.exports = new Instagram();
 
@@ -9,6 +10,11 @@ function Instagram () {
 
 function roundTo2Places (number) {
 	return Math.round(number * 100) / 100;
+}
+
+function getImageHtml (image) {
+	var src = image.images.standard_resolution.url;
+	return '<img src="' + src + '"/>'
 }
 
 Instagram.prototype.start = function () {
@@ -35,5 +41,15 @@ Instagram.prototype.callAPI = function (coords) {
 }
 
 Instagram.prototype.handleInstagramData = function (data) {
-	console.log(data);
+	var html = '<div class="collage">';
+	for (i = 0; i < data.length; i++) {
+		html += getImageHtml(data[i]);
+	}
+	html += '</div>';
+
+	$('body').append(html);
+	$('.collage').collagePlus({
+		'targetHeight': 100,
+		'effect': 'effect-1'
+	});
 }
