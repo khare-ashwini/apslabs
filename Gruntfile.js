@@ -6,11 +6,22 @@ module.exports = function( grunt ) {
         src : ['public/js/**/*.js'],
         dest : 'public/build/js/app.js'
       }
+    },
+    uglify: {
+      options: {
+        mangle: false,
+        sourceMap: true
+      },
+      app: {
+        files: {
+          'public/build/js/app.min.js': [ 'public/build/js/app.js']
+        }
+      }
     }
 
   });
 
-  grunt.registerTask('default',['browserify']);
+  grunt.registerTask('default',['browserify', 'uglify:app']);
 
   grunt.registerTask('production', ['browserify']);
 };

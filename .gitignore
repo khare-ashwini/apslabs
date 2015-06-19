@@ -20,4 +20,5 @@ node_modules
 .DS_Store
 Thumbs.db
 
-public/build
+public/build/js/app.js
+public/build/js/app.min.js.map
