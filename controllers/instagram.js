@@ -25,11 +25,35 @@ exports.getLocationId = function(req, res, next) {
 
   ig.location_search({ lat: lat_, lng: lng_ }, 1000, function(err, result, remaining, limit) {
     if (err) return next(err);
-    res.json(result);
+    var best_locationId = result[0].id;
+    console.log(best_locationId);
+    ig.location_media_recent(best_locationId, function(err, result, pagination, remaining, limit) {
+      if(err) return next(err);
+      res.json(result);
+    });
   });
 };
 
-// AT & T park images
+// AT & T Giant's Park location ID - 764521209
+
+/**
+ * GET images/instagram
+ * Params locationID
+ * Instagram API getLocation
+ */
+exports.getImages = function(req, res, next) {
+  var token = _.find(req.user.tokens, { kind: 'instagram' });
+  ig.use({ client_id: secrets.instagram.clientID, client_secret: secrets.instagram.clientSecret });
+  ig.use({ access_token: token.accessToken });
+
+  var locationId = parseInt(req.query.locationId);
+
+  ig.location_media_recent(locationId, function(err, result, pagination, remaining, limit) {
+    if(err) return next(err);
+    res.json(result);
+  });
+
+};
 
 
 
