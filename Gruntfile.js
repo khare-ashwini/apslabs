@@ -17,11 +17,17 @@ module.exports = function( grunt ) {
           'public/build/js/app.min.js': [ 'public/build/js/app.js']
         }
       }
+    },
+    watch: {
+      scripts: {
+        files:['public/js/**/*.js'],
+        tasks: ['browserify', 'uglify:app']
+      }
     }
 
   });
 
-  grunt.registerTask('default',['browserify', 'uglify:app']);
+  grunt.registerTask('default',['browserify', 'uglify:app', 'watch:scripts'] );
 
   grunt.registerTask('production', ['browserify']);
 };
