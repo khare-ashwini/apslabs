@@ -80,7 +80,7 @@ footer {
 @-webkit-keyframes flash-letter{
   0% { opacity: 0.5 }
   30% { opacity: 0.8 }
-  40% { opacity: 0.6 }
+  40% { opacity: 0.35 }
   100% { opacity: 0.5 }
 }
 
@@ -108,4 +108,34 @@ span.s-second {
 
 .item {
   width: 320px;
+  box-shadow: 1px 1px 1px #888;
+  margin: 10px;
+}
+
+.item span {
+  padding: 10px 5px;
+}
+
+.item div {
+  padding: 10px 5px;
+}
+
+.input-div {
+  width: 80%;
+}
+
+.hashtag-search {
+  outline: none;
+  border: 1px solid #d9d9d9;
+  padding: 8px;
+  padding-left: 15px;
+  margin: 30px 0;
+  width: 50%;
+  position: relative;
+  left: 30%;
+  font-size: 16px;
+}
+
+.hashtag-search:focus {
+  border: 1px solid #4d90fe;
 }

@@ -37,3 +37,8 @@ API.prototype.callAPI = function (coords) {
 	var self = this;
 	$.getJSON(self.path, {lat: roundTo2Places(coords[0]), lng: roundTo2Places(coords[1])}, self.handleDataCallback);
 }
+
+API.prototype.getHashtag = function (hashtag, callback) {
+	var self = this;
+	$.getJSON(self.path, {hashtag: hashtag}, self.handleDataCallback);
+}

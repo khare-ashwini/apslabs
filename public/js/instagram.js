@@ -2,24 +2,26 @@ var API = require('./api');
 var $ = require('jquery');
 var Masonry = require('masonry-layout');
 
-var Instagram = new API('images/instagram', handleInstagramData);
+var InstagramLocation = new API('images/instagram', handleInstagramData);
+var InstagramHashtag = new API('hash/instagram', handleInstagramData);
 
-module.exports = Instagram;
+module.exports = {
+				   location: InstagramLocation,
+				   hashtag: InstagramHashtag
+				};
 
 
 function handleInstagramData (data) {
-	var html = '<div class="collage" id="masonry-grid">';
+	var html = '';
 	for (i = 0; i < data.length; i++) {
 		html += '<div class="item">'
 		html += getImageHtml(data[i]);
 		html += '</div>'
 	}
-	html += '</div>';
-
-	$('body').append(html);
+	$('#masonry-container').append(html);
 	var grid = new Masonry('.collage', {
 		itemSelector: '.item',
-		columnWidth: 200
+		columnWidth: 95
 	});
 }
 
@@ -37,7 +39,8 @@ function getImageHtml (image) {
 		tags += '#' + image.tags[tag] + ' ';
 	}
 	html += '<span>' + tags + '</span>';
-	var caption = image.caption.text;
+	image.caption = image.caption || {};
+	var caption = image.caption.text || "";
 	html += '<div>' + caption.substring(0, 150) + '...' + '</div>'
 	return html;
 }
