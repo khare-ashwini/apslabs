@@ -10,12 +10,27 @@ Tickets.prototype.start = function () {
 	var isOnTicket = (window.location.pathname === '/tickets');
 
 	if (isOnTicket) {
-		$.getJSON('/tickets/all', function (info) {
+		$.getJSON('tickets/all', function (info) {
 			handleTickets(info);
 		});
 	}
 };
 
+Tickets.prototype.update = function (data) {
+	$.post('tickets/update', data, function (info){
+
+	});
+}
+
+Tickets.prototype.delete = function (data) {
+	$.post('tickets/delete', data, function (info){
+
+	});
+}
+
+Tickets.prototype.ticketRow = function (info) {
+	return ticketRow(info);
+}
 
 function handleTickets(info) {
 	var html = '<table>';
@@ -46,8 +61,25 @@ function ticketRow(info) {
  	html += '<td>' + info.cost + '</td>';
  	html += '<td>' + info.total + '</td>';
  	html += '<td><button class="ticket-approve" data-id="' + info._id + '">Approve</button></td>';
- 	html += '<td><button class="ticket-decline" data-id="' + info._id + '"></button>Delete</td>';
- 	html += '<td><button class="ticket-update" data-id="' + info._id + '"></button>Update</td>';
+ 	html += '<td><button class="ticket-delete" data-id="' + info._id + '">Delete</button></td>';
+ 	html += '<td><button class="ticket-update" data-id="' + info._id + '">Update</button></td>';
  	html += '</tr>';
  	return html;
 }
+
+Tickets.prototype.ticketUpdateRow = function (info) {
+ 	var html = '';
+ 	if (!info.seat || !info.name || !info.quantity || !info.cost || !info.total) {
+ 		return html;
+ 	}
+ 	html += '<tr>'
+ 	html += '<td><input type="text" value="' + info.seat + '"/></td>';
+ 	html += '<td><input type="text" value="' + info.name + '"/></td>';
+ 	html += '<td><input type="number" value="' + info.quantity + '"/></td>';
+ 	html += '<td><input type="number" value="' + info.cost + '"/></td>';
+ 	html += '<td><input type="number" value="' + info.total + '"/></td>';
+ 	html += '<td><button class="ticket-ok" data-id="' + info._id + '">Update</button></td>';
+ 	html += '</tr>';
+ 	return html;
+}
+
