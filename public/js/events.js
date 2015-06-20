@@ -1,6 +1,8 @@
 var $ = require('jquery');
 var Instagram = require('./instagram');
+var Twitter = require('./twitter');
 var InstagramHashtag = Instagram.hashtag;
+var twitterStart = Twitter.start.bind(Twitter);
 
 module.exports = new Events();
 
@@ -18,7 +20,9 @@ Events.prototype.searchEvent = function () {
 			e.preventDefault();
 			this.blur();
 			var val = $(e.target).val();
+			$("#masonry-container").html('');
 			InstagramHashtag.getHashtag(val);
+			twitterStart();
 		}
 	})
 }

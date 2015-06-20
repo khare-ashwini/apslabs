@@ -1,7 +1,6 @@
 var API = require('./api');
 var $ = require('jquery');
-var Masonry = require('masonry-layout');
-
+var Utils = require('./utils')
 var InstagramLocation = new API('images/instagram', handleInstagramData);
 var InstagramHashtag = new API('hash/instagram', handleInstagramData);
 
@@ -18,11 +17,7 @@ function handleInstagramData (data) {
 		html += getImageHtml(data[i]);
 		html += '</div>'
 	}
-	$('#masonry-container').html(html);
-	var grid = new Masonry('.collage', {
-		itemSelector: '.item',
-		columnWidth: 95
-	});
+	Utils.addHtml(html);
 }
 
 function getImageHtml (image) {
