@@ -2,30 +2,68 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
-    android:background="@color/white"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp" tools:context=".MainActivity"
+    android:background="@drawable/stadium"
     >
-
-    <ImageView
-        android:id="@+id/test_image"
-        android:src="@drawable/stadium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="8dp"
-        android:paddingLeft="-16dp"
-        android:paddingRight="-16dp"
-    />
-
     <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:textColor="#000"
+        android:textColor="@color/white"
         android:textSize="40sp"
+        android:shadowColor="#000"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="11"
         />
+
+    <LinearLayout
+        android:id="@+id/buttonBar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        style="@android:style/ButtonBar"
+        android:gravity="center"
+        android:background="@color/primary"
+        android:minHeight="60dp"
+        android:layout_centerHorizontal="true"
+        >
+        <Button
+            android:id="@+id/twitter_button"
+            android:layout_height="32dp"
+            android:layout_width="32dp"
+            android:background="@drawable/twitter_icon"
+            android:onClick="twitter_action"
+            android:layout_marginEnd="40dp"
+            />
+        <Button
+            android:id="@+id/instagram_button"
+            android:layout_height="32dp"
+            android:layout_width="32dp"
+            android:background="@drawable/instagram_icon"
+            android:onClick="instagram_action"
+            android:layout_marginEnd="40dp"
+            />
+        <Button
+            android:id="@+id/tickets_button"
+            android:layout_height="32dp"
+            android:layout_width="32dp"
+            android:background="@drawable/tickets_icon"
+            android:onClick="tickets_action"
+            android:layout_marginEnd="40dp"
+            />
+        <Button
+            android:id="@+id/lovecam_button"
+            android:layout_height="32dp"
+            android:layout_width="32dp"
+            android:background="@drawable/lovecam_icon"
+            android:onClick="lovecam_action"
+            android:layout_marginEnd="40dp"
+            />
+    </LinearLayout>
 
 
 </RelativeLayout>

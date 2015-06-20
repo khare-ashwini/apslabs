@@ -1,9 +1,12 @@
 package in.ashwinikhare.apslabs;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 
 public class MainActivity extends Activity {
@@ -40,4 +43,40 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void twitter_action(View view){
+        Context context = getApplicationContext();
+        CharSequence text = "Twitter Action";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+    }
+
+    public void instagram_action(View view){
+        Context context = getApplicationContext();
+        CharSequence text = "Instagram Action";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+    }
+    public void lovecam_action(View view){
+        Context context = getApplicationContext();
+        CharSequence text = "Lovecam Action";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+    }
+    public void tickets_action(View view){
+        Context context = getApplicationContext();
+        CharSequence text = "Tickets Action";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+    }
+
 }
+
