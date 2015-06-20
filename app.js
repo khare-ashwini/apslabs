@@ -197,8 +197,9 @@ app.get('/auth/venmo/callback', passport.authorize('venmo', { failureRedirect: '
 /**
  * Custom Routes
  */
-app.get('/location/instagram', passportConf.isAuthenticated, passportConf.isAuthorized, instagramController.getLocationId);
-app.get('/location/twitter', passportConf.isAuthenticated, passportConf.isAuthorized, twitterController.getTweets);
+app.get('/location/instagram', instagramController.getLocationId);
+app.get('/location/twitter', passportConf.isAuthorized, twitterController.getTweets);
+app.get('/images/instagram', instagramController.getImages );
 /**
  * Error Handler.
  */

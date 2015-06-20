@@ -16,9 +16,10 @@ var _ = require('lodash');
  * Instagram API getLocation
  */
 exports.getLocationId = function(req, res, next) {
-  var token = _.find(req.user.tokens, { kind: 'instagram' });
+  //var token = _.find(req.user.tokens, { kind: 'instagram' });
+  //console.log(token.accessToken);
   ig.use({ client_id: secrets.instagram.clientID, client_secret: secrets.instagram.clientSecret });
-  ig.use({ access_token: token.accessToken });
+  ig.use({ access_token: secrets.instagram.token });
 
   var lat_ = parseFloat(req.query.lat);
   var lng_ = parseFloat(req.query.lng);
@@ -26,7 +27,6 @@ exports.getLocationId = function(req, res, next) {
   ig.location_search({ lat: lat_, lng: lng_ }, 1000, function(err, result, remaining, limit) {
     if (err) return next(err);
     var best_locationId = result[0].id;
-    console.log(best_locationId);
     ig.location_media_recent(best_locationId, function(err, result, pagination, remaining, limit) {
       if(err) return next(err);
       res.json(result);
@@ -42,11 +42,12 @@ exports.getLocationId = function(req, res, next) {
  * Instagram API getLocation
  */
 exports.getImages = function(req, res, next) {
-  var token = _.find(req.user.tokens, { kind: 'instagram' });
+  //var token = _.find(req.user.tokens, { kind: 'instagram' });
   ig.use({ client_id: secrets.instagram.clientID, client_secret: secrets.instagram.clientSecret });
-  ig.use({ access_token: token.accessToken });
+  ig.use({ access_token: secrets.instagram.token });
 
-  var locationId = parseInt(req.query.locationId);
+  var ATT_park_location = "764521209";
+  var locationId = ATT_park_location || req.query.locationId;
 
   ig.location_media_recent(locationId, function(err, result, pagination, remaining, limit) {
     if(err) return next(err);
