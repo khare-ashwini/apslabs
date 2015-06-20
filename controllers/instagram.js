@@ -26,11 +26,14 @@ exports.getLocationId = function(req, res, next) {
 
   ig.location_search({ lat: lat_, lng: lng_ }, 1000, function(err, result, remaining, limit) {
     if (err) return next(err);
+    res.json(result);
+    /*
     var best_locationId = result[0].id;
     ig.location_media_recent(best_locationId, function(err, result, pagination, remaining, limit) {
       if(err) return next(err);
       res.json(result);
     });
+    */
   });
 };
 
@@ -39,7 +42,7 @@ exports.getLocationId = function(req, res, next) {
 /**
  * GET images/instagram
  * Params locationID
- * Instagram API getLocation
+ * Instagram API getImages
  */
 exports.getImages = function(req, res, next) {
   //var token = _.find(req.user.tokens, { kind: 'instagram' });
@@ -49,9 +52,35 @@ exports.getImages = function(req, res, next) {
   var ATT_park_location = "764521209";
   var locationId = ATT_park_location || req.query.locationId;
 
-  ig.location_media_recent(locationId, function(err, result, pagination, remaining, limit) {
+  ig.location_media_recent(locationId, {'count' : 10 }, function(err, result, pagination, remaining, limit) {
     if(err) return next(err);
+    if(remaining == 0){
+      res.status(500).json({ error: 'Instagram API limit exceeded' })
+    }
     res.json(result);
+  });
+
+};
+
+/**
+ * GET images/instagram
+ * Params hashTag
+ * Instagram API getImagesByHashTag
+ */
+exports.getImagesByHashTag = function(req, res, next) {
+  //var token = _.find(req.user.tokens, { kind: 'instagram' });
+  ig.use({ client_id: secrets.instagram.clientID, client_secret: secrets.instagram.clientSecret });
+  ig.use({ access_token: secrets.instagram.token });
+
+  var defaultHash = "sfgiants";
+  var hashTag = defaultHash || req.query.hashTag;
+
+  ig.tag_media_recent(hashTag, {}, function(err, medias, pagination, remaining, limit) {
+     if(err) return next(err);
+     if(remaining == 0){
+      res.status(500).json({ error: 'Instagram API limit exceeded' })
+     }
+     res.json(medias);
   });
 
 };

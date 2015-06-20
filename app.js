@@ -197,6 +197,7 @@ app.get('/auth/venmo/callback', passport.authorize('venmo', { failureRedirect: '
 app.get('/location/instagram', instagramController.getLocationId);
 app.get('/location/twitter', passportConf.isAuthorized, twitterController.getTweets);
 app.get('/images/instagram', instagramController.getImages );
+app.get('/hash/instagram', instagramController.getImagesByHashTag);
 /**
  * Error Handler.
  */
