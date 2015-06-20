@@ -28,6 +28,8 @@ API.prototype.getPictures = function (location) {
 		coords = [location.latitude, location.longitude]
 	}
 
+	coords = this.defaultCoordinates;
+
 	this.callAPI(coords);
 }
 
