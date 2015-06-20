@@ -10,9 +10,10 @@ import android.widget.EditText;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+
+import javax.net.ssl.HttpsURLConnection;
 
 /**
  * Created by ash on 6/20/15.
@@ -86,7 +87,7 @@ public class tickets_fragment extends DialogFragment {
 
         try {
             URL url = new URL(request);
-            HttpURLConnection conn= (HttpURLConnection) url.openConnection();
+            HttpsURLConnection conn= (HttpsURLConnection) url.openConnection();
             conn.setDoOutput( true );
             conn.setInstanceFollowRedirects( false );
             conn.setRequestMethod( "POST" );
