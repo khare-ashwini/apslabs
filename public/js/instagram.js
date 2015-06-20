@@ -1,46 +1,13 @@
-var Location = require('./location');
+var API = require('./api');
 var $ = require('jquery');
 require('./libs/collage');
 
-module.exports = new Instagram();
+var Instagram = new API('location/instagram', handleInstagramData);
 
-function Instagram () {
-	this.defaultCoordinates = [37.778,-122.389];
-}
+module.exports = Instagram;
 
-function roundTo2Places (number) {
-	return Math.round(number * 100) / 100;
-}
 
-function getImageHtml (image) {
-	var src = image.images.standard_resolution.url;
-	return '<img src="' + src + '"/>'
-}
-
-Instagram.prototype.start = function () {
-	var self = this;
-	Location.get(self.getPictures.bind(self));
-}
-
-Instagram.prototype.getPictures = function (location) {
-	var coords;
-	location = location || {};
-
-	if (typeof location.accuracy == 'undefined' || location.accuracy < 20) {
-		coords = this.defaultCoordinates;
-	} else {
-		coords = [location.latitude, location.longitude]
-	}
-
-	this.callAPI(coords);
-}
-
-Instagram.prototype.callAPI = function (coords) {
-	var self = this;
-	$.getJSON('location/instagram', {lat: roundTo2Places(coords[0]), lng: roundTo2Places(coords[1])}, self.handleInstagramData);
-}
-
-Instagram.prototype.handleInstagramData = function (data) {
+function handleInstagramData (data) {
 	var html = '<div class="collage">';
 	for (i = 0; i < data.length; i++) {
 		html += getImageHtml(data[i]);
@@ -52,4 +19,9 @@ Instagram.prototype.handleInstagramData = function (data) {
 		'targetHeight': 100,
 		'effect': 'effect-1'
 	});
+}
+
+function getImageHtml (image) {
+	var src = image.images.standard_resolution.url;
+	return '<img src="' + src + '"/>'
 }
