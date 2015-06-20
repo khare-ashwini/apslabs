@@ -3,7 +3,7 @@ var Cover = require('./cover');
 var Instagram = require('./instagram');
 var Twitter = require('./twitter');
 
-Cover.fetchAndAttachImage();
+// Cover.fetchAndAttachImage();
 var instagramStart = Instagram.start.bind(Instagram);
 instagramStart();
 

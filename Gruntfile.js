@@ -3,7 +3,7 @@ module.exports = function( grunt ) {
   grunt.initConfig({
     browserify : {
       app : {
-        files: { 'public/build/js/app.js': ['public/js/**/*.js'] },
+        files: { 'public/build/js/app.js': ['public/js/**/*.js', '!public/js/libs/*.js'] },
         options: {
           browserifyOptions: {
             debug: true
