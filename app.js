@@ -30,6 +30,7 @@ var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
 var instagramController = require('./controllers/instagram');
 var twitterController = require('./controllers/twitter');
+var ticketController = require('./controllers/tickets')
 /**
  * API keys and Passport configuration.
  */
@@ -79,11 +80,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-app.use(lusca({
-  csrf: true,
-  xframe: 'SAMEORIGIN',
-  xssProtection: true
-}));
+// app.use(lusca({
+//   csrf: true,
+//   xframe: 'SAMEORIGIN',
+//   xssProtection: true
+// }));
 
 app.use(function(req, res, next) {
   res.locals.user = req.user;
@@ -113,6 +114,11 @@ app.post('/account/profile', passportConf.isAuthenticated, userController.postUp
 app.post('/account/password', passportConf.isAuthenticated, userController.postUpdatePassword);
 app.post('/account/delete', passportConf.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConf.isAuthenticated, userController.getOauthUnlink);
+
+app.get('/tickets', ticketController.handleTicket)
+
+app.post('/tickets/feed', ticketController.feedTicket);
+app.get('/tickets/all', ticketController.getTicket);
 
 /**
  * API examples routes.
