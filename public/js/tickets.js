@@ -24,6 +24,9 @@ function handleTickets(info) {
 	html += '<th>Quantity</th>';
 	html += '<th>Cost</th>';
 	html += '<th>Total</th>';
+	html += '<th></th>';
+	html += '<th></th>';
+	html += '<th></th>';
 	for(var i = 0; i < info.length; i++) {
 		html += ticketRow(info[i]);
 	}
@@ -42,6 +45,9 @@ function ticketRow(info) {
  	html += '<td>' + info.quantity + '</td>';
  	html += '<td>' + info.cost + '</td>';
  	html += '<td>' + info.total + '</td>';
+ 	html += '<td><button class="ticket-approve" data-id="' + info._id + '">Approve</button></td>';
+ 	html += '<td><button class="ticket-decline" data-id="' + info._id + '"></button>Delete</td>';
+ 	html += '<td><button class="ticket-update" data-id="' + info._id + '"></button>Update</td>';
  	html += '</tr>';
  	return html;
 }

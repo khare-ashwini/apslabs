@@ -118,6 +118,8 @@ app.get('/account/unlink/:provider', passportConf.isAuthenticated, userControlle
 app.get('/tickets', ticketController.handleTicket)
 
 app.post('/tickets/feed', ticketController.feedTicket);
+app.post('/tickets/update', ticketController.updateTicket);
+app.post('/tickets/delete', ticketController.deleteTicket);
 app.get('/tickets/all', ticketController.getTicket);
 
 /**
