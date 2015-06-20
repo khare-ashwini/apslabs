@@ -19,6 +19,6 @@ function getStatusData (status) {
 		 + status.user.name + ')';
 	status.text = status.text || '';
 	html += '<div class="twitter-status">' + status.text.substring(0, 150) + '</div>';
-	html += '<div class="twitter-icon><i class="fa fa-twitter"></i></div>';
+	html += '<span class="twitter-icon><i class="fa fa-twitter"></i></span>';
 	return html;
 }
