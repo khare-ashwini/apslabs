@@ -41,5 +41,5 @@ module.exports = function( grunt ) {
 
   grunt.registerTask('default',['browserify', 'exorcise', 'watch:scripts'] );
 
-  grunt.registerTask('production', ['browserify', 'uglify:app']);
+  grunt.registerTask('production', ['browserify', 'exorcise']);
 };
