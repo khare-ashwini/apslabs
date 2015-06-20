@@ -1,11 +1,12 @@
 package in.ashwinikhare.apslabs;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,13 +14,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         // Set a ToolBar to replace the ActionBar.
        // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
        // setSupportActionBar(toolbar);
@@ -139,10 +139,13 @@ public class MainActivity extends Activity {
         Context context = getApplicationContext();
         CharSequence text = "Tickets Action";
         int duration = Toast.LENGTH_SHORT;
-
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
+        FragmentManager fm = getSupportFragmentManager();
+        tickets_fragment editNameDialog = tickets_fragment.newInstance("Book A Ticket");
+        editNameDialog.show(fm, "fragment_edit_name");
     }
 
 }
+
 
