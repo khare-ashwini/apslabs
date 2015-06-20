@@ -9,6 +9,7 @@ import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 
@@ -49,8 +50,10 @@ public class MainActivity extends Activity {
 
     public void twitter_action(View view){
 
+        EditText hashTag_field = (EditText)findViewById(R.id.hashtag_name);
+        String hashTag_value = hashTag_field.getText().toString();
 
-        String url = "http://www.twitter.com/intent/tweet?url=YOURURL&text=Hello APSLabs!";
+        String url = "http://www.twitter.com/intent/tweet?hashtags=" + hashTag_value;
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url));
         startActivity(i);
@@ -59,7 +62,8 @@ public class MainActivity extends Activity {
         CharSequence text = "Twitter Link";
         int duration = Toast.LENGTH_SHORT;
 
-        Toast toast = Toast.makeText(context, text, duration);
+        Toast toast;
+        toast = Toast.makeText(context, url, duration);
         toast.show();
     }
 

@@ -18,7 +18,7 @@
         android:shadowDx="1"
         android:shadowDy="1"
         android:shadowRadius="11"
-        />
+        android:id="@+id/textView" />
 
     <LinearLayout
         android:id="@+id/buttonBar"
@@ -64,6 +64,31 @@
             android:layout_marginEnd="40dp"
             />
     </LinearLayout>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/hashtag_character"
+        android:layout_marginBottom="56dp"
+        android:text="#"
+        android:background="@color/black"
+        android:textSize="40sp"
+        android:layout_above="@+id/textView"
+        android:layout_alignLeft="@id/textView"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/hashtag_name"
+        android:layout_marginBottom="56dp"
+        android:text="SFGiants"
+        android:background="@color/black"
+        android:textSize="40sp"
+        android:layout_marginStart="25dp"
+        android:layout_above="@+id/textView"
+        android:layout_alignStart="@+id/hashtag_character"
+        />
 
 
 </RelativeLayout>
