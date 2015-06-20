@@ -51,7 +51,7 @@ function handleTickets(info) {
 
 function ticketRow(info) {
  	var html = '';
- 	if (!info.seat || !info.name || !info.quantity || !info.cost || !info.total) {
+ 	if (!info.seat || !info.name || !info.quantity || !info.cost || !info.total || info.approve) {
  		return html;
  	}
  	html += '<tr>'

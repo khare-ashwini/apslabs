@@ -34,10 +34,11 @@ Events.prototype.searchEvent = function () {
 }
 
 Events.prototype.updateEvent = function () {
-	$('.ticket-update').click(function (e) {
+	$('body').on('click', '.ticket-update', function () {
+		console.log('hi');
 		var id = $(this).attr('data-id');
-		var parent = $(this).parent();
-		var values = parent.find('td').val();
+		var parent = $(this).parent().parent();
+		var values = parent.find('td').map(function () { return $(this).html() });
 		value = values.slice(0,5);
 		var info = {_id: id ,
 					 name: value[1],
@@ -47,16 +48,15 @@ Events.prototype.updateEvent = function () {
 					 total: value[4]};
 
 		var html = ticket.ticketUpdateRow(info);
-		console.log(info, html)
-		// parent.html(html);
+		parent.replaceWith(html);
 	})
 }
 
 Events.prototype.okEvent = function () {
-	$('.ticket-ok').click(function () {
+	$('body').on('click', '.ticket-ok', function () {
 		var id = $(this).attr('data-id');
-		var parent = $(this).parent();
-		var values = parent.find('input').val();
+		var parent = $(this).parent().parent();
+		var values = parent.find('input').map(function () { return $(this).html() });
 		var info = {_id: id ,
 					 name: value[1],
 					 seat: value[0],
@@ -65,15 +65,15 @@ Events.prototype.okEvent = function () {
 					 total: value[4]};
 		$.post('tickets/update', info, function () {
 			var html = ticket.ticketRow(info);
-			parent.html(html);
+			parent.replaceWith(html);
 		});
 	})
 }
 
 Events.prototype.deleteEvent = function () {
-	$('.ticket-delete').click(function () {
+	$('body').on('click', '.ticket-delete', function () {
 		var id = $(this).attr('data-id');
-		var parent = $(this).parent();
+		var parent = $(this).parent().parent();
 		$.post('tickets/delete', {_id: id}, function () {
 			parent.remove();
 		});
@@ -81,7 +81,7 @@ Events.prototype.deleteEvent = function () {
 }
 
 Events.prototype.approveEvent = function () {
-	$('.ticket-approve').click(function () {
+	$('body').on('click', '.ticket-approve', function () {
 		var id = $(this).attr('data-id');
 		var parent = $(this).parent();
 		$.post('tickets/approve', {_id: id}, function () {
