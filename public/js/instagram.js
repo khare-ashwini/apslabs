@@ -18,7 +18,7 @@ function handleInstagramData (data) {
 		html += getImageHtml(data[i]);
 		html += '</div>'
 	}
-	$('#masonry-container').append(html);
+	$('#masonry-container').html(html);
 	var grid = new Masonry('.collage', {
 		itemSelector: '.item',
 		columnWidth: 95
