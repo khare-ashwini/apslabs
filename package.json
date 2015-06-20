@@ -6,7 +6,7 @@
     "url": "https://github.com/sahat/hackathon-starter.git"
   },
   "scripts": {
-    "start": "node app.js",
+    "start": "npm install && grunt && node app.js",
     "test": "mocha"
   },
   "dependencies": {
