@@ -29,6 +29,10 @@ exports.deleteTicket = function (req, res) {
 	deleteTicket(req.body, res);
 }
 
+exports.approveTicket = function (req, res) {
+	approveTicket(req.body, res);
+}
+
 function handleQuery(query, res) {
 	if (!query.seat) {
 		res.send('Seat is missing');
@@ -101,6 +105,24 @@ function deleteTicket(req, res) {
 			res.send('deleted');
 		}
 	})
+}
+
+function approveTicket(req, res) {
+	var id = req._id;
+	TicketModel.findById(id, function (err, existing) {
+		if (err) {
+			res.send('Failed to approve');
+			return;
+		}
+		existing.approve = 1;
+		existing.save(function (err) {
+			if (err) {
+				res.send('approve failed');
+			} else {
+				res.send('approved');
+			}
+		})
+	});
 }
 
 

@@ -6,7 +6,8 @@ var ticketSchema = new mongoose.Schema({
 	name: String,
 	cost: { type: Number, default: 8},
 	quantity: {type: Number, default: 1},
-	total: Number
+	total: Number,
+	approve: { type: Boolean, default: 0}
 });
 
 ticketSchema.pre('save', function (next) {
