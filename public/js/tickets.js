@@ -60,9 +60,9 @@ function ticketRow(info) {
  	html += '<td>' + info.quantity + '</td>';
  	html += '<td>' + info.cost + '</td>';
  	html += '<td>' + info.total + '</td>';
- 	html += '<td><button class="ticket-approve" data-id="' + info._id + '">Approve</button></td>';
- 	html += '<td><button class="ticket-delete" data-id="' + info._id + '">Delete</button></td>';
- 	html += '<td><button class="ticket-update" data-id="' + info._id + '">Update</button></td>';
+ 	html += '<td><button class="ticket-button ticket-approve" data-id="' + info._id + '"><i class="fa fa-thumbs-up"></i></button></td>';
+ 	html += '<td><button class="ticket-button ticket-delete" data-id="' + info._id + '"><i class="fa fa-thumbs-down"></i></button></td>';
+ 	html += '<td><button class="ticket-button ticket-update" data-id="' + info._id + '"><i class="fa fa-wrench"></i></button></td>';
  	html += '</tr>';
  	return html;
 }
@@ -78,7 +78,7 @@ Tickets.prototype.ticketUpdateRow = function (info) {
  	html += '<td><input type="number" value="' + info.quantity + '"/></td>';
  	html += '<td><input type="number" value="' + info.cost + '"/></td>';
  	html += '<td><input type="number" value="' + info.total + '"/></td>';
- 	html += '<td><button class="ticket-ok" data-id="' + info._id + '">Update</button></td>';
+ 	html += '<td><button class="ticket-button ticket-ok" data-id="' + info._id + '"><i class="fa fa-check"></i></button></td>';
  	html += '</tr>';
  	return html;
 }

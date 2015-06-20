@@ -35,11 +35,10 @@ Events.prototype.searchEvent = function () {
 
 Events.prototype.updateEvent = function () {
 	$('body').on('click', '.ticket-update', function () {
-		console.log('hi');
 		var id = $(this).attr('data-id');
 		var parent = $(this).parent().parent();
 		var values = parent.find('td').map(function () { return $(this).html() });
-		value = values.slice(0,5);
+		var value = values.slice(0,5);
 		var info = {_id: id ,
 					 name: value[1],
 					 seat: value[0],
@@ -56,13 +55,13 @@ Events.prototype.okEvent = function () {
 	$('body').on('click', '.ticket-ok', function () {
 		var id = $(this).attr('data-id');
 		var parent = $(this).parent().parent();
-		var values = parent.find('input').map(function () { return $(this).html() });
+		var values = parent.find('input').map(function () { return $(this).val() });
 		var info = {_id: id ,
-					 name: value[1],
-					 seat: value[0],
-					 quantity: value[2],
-					 cost: value[3],
-					 total: value[4]};
+					 name: values[1],
+					 seat: values[0],
+					 quantity: values[2],
+					 cost: values[3],
+					 total: parseInt(values[2]) * parseInt(values[3])};
 		$.post('tickets/update', info, function () {
 			var html = ticket.ticketRow(info);
 			parent.replaceWith(html);
@@ -83,7 +82,7 @@ Events.prototype.deleteEvent = function () {
 Events.prototype.approveEvent = function () {
 	$('body').on('click', '.ticket-approve', function () {
 		var id = $(this).attr('data-id');
-		var parent = $(this).parent();
+		var parent = $(this).parent().parent();
 		$.post('tickets/approve', {_id: id}, function () {
 			parent.remove();
 		});
