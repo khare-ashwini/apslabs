@@ -22,7 +22,7 @@ exports.getTicket = function (req, res) {
 };
 
 exports.updateTicket = function (req, res) {
-	updateTickets(req.body, res);
+	updateTicket(req.body, res);
 }
 
 exports.deleteTicket = function (req, res) {
@@ -85,7 +85,7 @@ function updateTicket(req, res) {
 		existing.quantity = quantity;
 		existing.seat = seat;
 		existing.cost = cost;
-		exisiting.total = total;
+		existing.total = total;
 		existing.save(function (err) {
 			if (err) {
 				res.send('update failed');
