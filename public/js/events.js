@@ -18,6 +18,7 @@ Events.prototype.startListening = function () {
 	this.okEvent();
 	this.deleteEvent();
 	this.approveEvent();
+	this.graphEvent();
 }
 
 Events.prototype.searchEvent = function () {
@@ -87,4 +88,18 @@ Events.prototype.approveEvent = function () {
 			parent.remove();
 		});
 	});
+}
+
+
+Events.prototype.graphEvent = function () {
+	$('.toggle-graph').click(function () {
+		$('#masonry-container').toggle();
+		$('#holder').toggle();
+		var val = $(this).html();
+		if (val == 'Show Chart') {
+			$(this).html('Show Images');
+		} else {
+			$(this).html('Show Chart');
+		}
+	})
 }
