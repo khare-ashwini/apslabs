@@ -1,4 +1,5 @@
 <resources>
+
     <!-- inherit from the material theme -->
     <style name="AppTheme" parent="android:Theme.Material">
         <!-- Main theme colors -->
@@ -8,6 +9,7 @@
         <item name="android:colorPrimaryDark">@color/primary_dark</item>
         <!--   theme UI controls like checkboxes and text fields -->
         <item name="android:colorAccent">@color/accent</item>
+
     </style>
 
 </resources>

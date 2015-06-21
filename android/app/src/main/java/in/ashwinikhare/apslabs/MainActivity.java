@@ -13,8 +13,18 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.parse.Parse;
+import com.parse.ParseInstallation;
 
-public class MainActivity extends FragmentActivity {
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+
+import javax.net.ssl.HttpsURLConnection;
+
+
+public class MainActivity extends FragmentActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +33,17 @@ public class MainActivity extends FragmentActivity {
         // Set a ToolBar to replace the ActionBar.
        // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
        // setSupportActionBar(toolbar);
+        // Setup Parse
+        // Enable Local Datastore.
+        Parse.enableLocalDatastore(this);
+        Parse.initialize(this, "tbxyIfhUxZwtotFYu3GJYL6fOogKntl1FFD8uvbf", "J6BL8AaRUfB4j6xn03SaIBrYmSxYI3UlOzHmjNMj");
+        ParseInstallation.getCurrentInstallation().saveInBackground();
+        /*
+        ParseObject testObject = new ParseObject("TestObject");
+        testObject.put("foo", "bar");
+        testObject.saveInBackground();
+        */
+
     }
 
 
@@ -141,9 +162,64 @@ public class MainActivity extends FragmentActivity {
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
+
         FragmentManager fm = getSupportFragmentManager();
         tickets_fragment editNameDialog = tickets_fragment.newInstance("Book A Ticket");
         editNameDialog.show(fm, "fragment_edit_name");
+    }
+
+    public void bookSeat(View view){
+        //Get Form parameters
+        EditText nameEditText = (EditText) view.findViewById(R.id.txtName);
+        EditText emailEditText = (EditText) view.findViewById(R.id.txtEmail);
+        EditText qtyEditText = (EditText) view.findViewById(R.id.txtQty);
+
+        String name = nameEditText.getText().toString();
+        String email = emailEditText.getText().toString();
+        String qty = qtyEditText.getText().toString();
+
+        /*
+        AsyncHttpClient client = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+        params.put("key", "value");
+        params.put("more", "data");
+
+       new TextHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String res) {
+                // called when response HTTP status is "200 OK"
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
+                // called when response HTTP status is "4XX" (eg. 401, 403, 404)
+            }
+        }
+
+        */
+
+        String urlParameters  = "name="+name+"&email="+email+"&qty="+qty;
+        byte[] postData       = urlParameters.getBytes(StandardCharsets.UTF_8);
+        int    postDataLength = postData.length;
+        String request        = "https://mighty-plateau-5584.herokuapp.com/tickets/feed";
+
+        try {
+            URL url = new URL(request);
+            HttpsURLConnection conn= (HttpsURLConnection) url.openConnection();
+            conn.setDoOutput( true );
+            conn.setInstanceFollowRedirects( false );
+            conn.setRequestMethod( "POST" );
+            conn.setRequestProperty( "Content-Type", "application/x-www-form-urlencoded");
+            conn.setRequestProperty( "charset", "utf-8");
+            conn.setRequestProperty( "Content-Length", Integer.toString( postDataLength ));
+            conn.setUseCaches( false );
+            try( DataOutputStream wr = new DataOutputStream( conn.getOutputStream())) {
+                wr.write(postData);
+            }
+        } catch (IOException e){
+            throw new RuntimeException(e);
+        }
+
     }
 
 }

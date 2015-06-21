@@ -30,6 +30,7 @@
         android:background="@color/primary"
         android:minHeight="60dp"
         android:layout_centerHorizontal="true"
+        android:paddingLeft="40dp"
         >
         <Button
             android:id="@+id/twitter_button"
@@ -37,14 +38,6 @@
             android:layout_width="32dp"
             android:background="@drawable/twitter_icon"
             android:onClick="twitter_action"
-            android:layout_marginEnd="40dp"
-            />
-        <Button
-            android:id="@+id/instagram_button"
-            android:layout_height="32dp"
-            android:layout_width="32dp"
-            android:background="@drawable/instagram_icon"
-            android:onClick="instagram_action"
             android:layout_marginEnd="40dp"
             />
         <Button
