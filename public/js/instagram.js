@@ -12,7 +12,6 @@ module.exports = {
 
 function handleInstagramData (data) {
 	var html = '';
-	html += '<button class="show-graph btn btn-primary">Show Graph</button>'
 	var tags = {};
 	for (i = 0; i < data.length; i++) {
 		html += '<div class="item">'
