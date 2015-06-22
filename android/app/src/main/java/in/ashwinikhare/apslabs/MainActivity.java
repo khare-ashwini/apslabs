@@ -36,7 +36,9 @@ public class MainActivity extends FragmentActivity{
         // Setup Parse
         // Enable Local Datastore.
         Parse.enableLocalDatastore(this);
-        Parse.initialize(this, "tbxyIfhUxZwtotFYu3GJYL6fOogKntl1FFD8uvbf", "J6BL8AaRUfB4j6xn03SaIBrYmSxYI3UlOzHmjNMj");
+        final String ParseKey = "";
+        final String ParsePwd = "";
+        Parse.initialize(this, ParseKey, ParsePwd);
         ParseInstallation.getCurrentInstallation().saveInBackground();
         /*
         ParseObject testObject = new ParseObject("TestObject");
