@@ -203,10 +203,10 @@ app.get('/auth/venmo/callback', passport.authorize('venmo', { failureRedirect: '
 /**
  * Custom Routes
  */
-app.get('/location/instagram', instagramController.getLocationId);
+app.get('/location/instagram', passportConf.isAuthorized, instagramController.getLocationId);
 app.get('/location/twitter', passportConf.isAuthorized, twitterController.getTweets);
-app.get('/images/instagram', instagramController.getImages );
-app.get('/hash/instagram', instagramController.getImagesByHashTag);
+app.get('/images/instagram', passportConf.isAuthorized, instagramController.getImages );
+app.get('/hash/instagram', passportConf.isAuthorized, instagramController.getImagesByHashTag);
 /**
  * Error Handler.
  */
