@@ -1,5 +1,5 @@
 #Apslabs 
-[Topcoder Open 2015](http://hackathons.topcoder.com/tco15-usa) - Hackathon Entry 
+[Topcoder Open 2015](http://hackathons.topcoder.com/tco15-usa) - Hackathon Entry. 
 Our team was 3rd.
 
 ##Theme
