@@ -1,6 +1,10 @@
-#Apslabs 
-[Topcoder Open 2015](http://hackathons.topcoder.com/tco15-usa) - Hackathon Entry. 
+#Apslabs
+[Topcoder Open 2015](http://hackathons.topcoder.com/tco15-usa) - Hackathon Entry.
 Our team was 3rd.
+
+## Authors
+
+[@apsdehal](https://github.com/apsdehal) and [@khareashwini](https://github.com/khareashwini)
 
 ##Theme
 >You are the owner of a stadium and you want to build an app either for administration purposes or an app for the fans who visit.
@@ -8,7 +12,7 @@ Our team was 3rd.
 ##APIs
 Mandatory:
 * Instagram
-* Twitter 
+* Twitter
 
 Optional(SDK):
 * Parse
